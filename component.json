@@ -1,0 +1,152 @@
+{
+    "title": "HanaManagementClient",
+    "description": "The SAP HANA on Azure Management Client.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/hanaonazure/2017-11-03-preview/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Operations_List": {
+            "main": "./lib/actions/Operations_List.js",
+            "title": "Gets a list of SAP HANA management operations.",
+            "description": "Gets a list of SAP HANA management operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "HanaInstances_List": {
+            "main": "./lib/actions/HanaInstances_List.js",
+            "title": "Gets a list of SAP HANA instances in the specified subscription.",
+            "description": "Gets a list of SAP HANA instances in the specified subscription. The operations returns various properties of each SAP HANA on Azure instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/HanaInstances_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "HanaInstances_ListByResourceGroup": {
+            "main": "./lib/actions/HanaInstances_ListByResourceGroup.js",
+            "title": "Gets a list of SAP HANA instances in the specified subscription and the resource group.",
+            "description": "Gets a list of SAP HANA instances in the specified subscription and the resource group. The operations returns various properties of each SAP HANA on Azure instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/HanaInstances_ListByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "HanaInstances_Get": {
+            "main": "./lib/actions/HanaInstances_Get.js",
+            "title": "Gets properties of a SAP HANA instance.",
+            "description": "Gets properties of a SAP HANA instance for the specified subscription, resource group, and instance name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/HanaInstances_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "HanaInstances_Update": {
+            "main": "./lib/actions/HanaInstances_Update.js",
+            "title": "Patches the Tags field of a SAP HANA instance.",
+            "description": "Patches the Tags field of a SAP HANA instance for the specified subscription, resource group, and instance name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/HanaInstances_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "HanaInstances_Restart": {
+            "main": "./lib/actions/HanaInstances_Restart.js",
+            "title": "The operation to restart a SAP HANA instance.",
+            "description": "The operation to restart a SAP HANA instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/HanaInstances_Restart.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
